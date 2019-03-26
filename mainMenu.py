@@ -13,7 +13,7 @@ from common import FormError
 def write_html():
     form = cgi.FieldStorage()
 
-    if"new_game_id" in form:
+    if"new_game" in form:
         new_game = int(form["new_game_id"].value)
     else:
         new_game = None
