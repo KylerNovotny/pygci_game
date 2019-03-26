@@ -9,12 +9,13 @@ cgitb.enable()
 
 import MySQLdb
 from common import FormError
+import credentials as login
 
 def write_html():
     form = cgi.FieldStorage()
 
     if"new_game" in form:
-        new_game = int(form["new_game_id"].value)
+        new_game = int(form["new_game"].value)
     else:
         new_game = None
     
@@ -39,13 +40,18 @@ width: “50”
 """,end="")
 
     #HTML GENERATION HERE
+
+    conn = MySQLdb.connect(host=login.mysql['host'],
+                           user=login.mysql['user'],
+                           passwd=login.mysql['passwd'],
+                           db=login.mysql['db'])
     
     #hardcoded game
     g=[{"gameId":1,"PlayerName":"Thomas","Items":['bow','knife'],"state":"Died"}]
     
-    write_table("Active Games",g,finished=False)
+    write_table("Active Games",g,new_game=new_game,finished=False)
     write_create_game_form()
-    write_table("Completed Games",g,finished=True)
+    write_table("Completed Games",g,new_game=new_game,finished=True)
 
     print("""</body>
 </html>

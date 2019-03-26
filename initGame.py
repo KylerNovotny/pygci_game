@@ -5,6 +5,7 @@ import cgitb
 cgitb.enable()
 
 import MySQLdb
+import credentials as login
 from common import FormError
 
 def check_validity():
@@ -21,12 +22,13 @@ def check_validity():
 try:
     print("Content-Type: text/html")
     gameID = check_validity()
+    IP = login.webhost['host']
 
     # https://en.wikipedia.org/wiki/Post/Redirect/Get
     # https://stackoverflow.com/questions/6122957/webpage-redirect-to-the-main-page-with-cgi-python
     print("Status: 303 See other")
     #remember to update this to the unfinalized url
-    print("""Location: http://54.212.32.71/cgi-bin/mainMenu.py?new_game=%s"""%(gameID))
+    print("""Location: http://%s/cgi-bin/mainMenu.py?new_game=%s"""%(IP,gameID))
     print()
     
 except FormError as e:

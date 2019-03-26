@@ -5,6 +5,7 @@ import cgitb
 cgitb.enable()
 
 import MySQLdb
+import credentials as login
 
 from common import FormError
 
