@@ -51,19 +51,21 @@ width: “50”
     activegames = []
     for row in c.fetchall():
         activegames.append({'id':row[0],
-                            'choicepath':row[1],
-                            'items':row[2],
-                            'winstatus':row[3],
-                            'dead':row[4]})
+                            'playerName':row[1],
+                            'choicepath':row[2],
+                            'items':row[3],
+                            'winstatus':row[4],
+                            'dead':row[5]})
     
     wongames = []
     c.execute("SELECT * FROM gamedata WHERE winstatus=True OR dead=True")
     for row in c.fetchall():
         wongames.append({'id':row[0],
-                        'choicepath':row[1],
-                        'items':row[2],
-                        'winstatus':row[3],
-                        'dead':row[4]})
+                         'playerName':row[1],
+                         'choicepath':row[2],
+                         'items':row[3],
+                         'winstatus':row[4],
+                         'dead':row[5]})
     c.close()
     conn.close()
     
