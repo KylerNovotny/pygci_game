@@ -54,7 +54,7 @@ width: “50”
                             'choicepath':row[1],
                             'items':row[2],
                             'winstatus':row[3],
-                            'dead':})
+                            'dead':row[4]})
     
     wongames = []
     c.execute("SELECT * FROM gamedata WHERE winstatus=True OR dead=True")
@@ -108,9 +108,9 @@ def write_table(tablename, games, new_game=None, finished=False):
 """ % (tablename,finishedStr) ,end="")
 
     for g in games:
-        GameID = g["id"];
-        PlayerName = g["playerName"]
-        Items = g["items"]
+        gameId = g["id"]
+        playerName = g["playerName"]
+        items = g["items"]
         
         winstatus = g['winstatus']
         dead = g['dead']
