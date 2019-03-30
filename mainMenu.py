@@ -114,7 +114,7 @@ def write_table(name, games, new_game=None, finished=False):
 
 #This is what runs when the page is first loaded each time.
 
-print("Content-Type: text/plain;charset=utf-8")
+print("Content-Type: text/html;charset=utf-8")
 print()
 
 write_html()
