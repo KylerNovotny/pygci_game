@@ -46,22 +46,24 @@ width: “50”
                            passwd=login.mysql['passwd'],
                            db=login.mysql['db'])
     c=conn.cursor()
-    c.execute("SELECT * FROM gamedata WHERE winstatus=False")
+    c.execute("SELECT * FROM gamedata WHERE winstatus=False AND dead=False")
 
     activegames = []
     for row in c.fetchall():
         activegames.append({'id':row[0],
                             'choicepath':row[1],
                             'items':row[2],
-                            'winstatus':row[3]})
+                            'winstatus':row[3],
+                            'dead':})
     
     wongames = []
-    c.execute("SELECT * FROM gamedata WHERE winstatus=True")
+    c.execute("SELECT * FROM gamedata WHERE winstatus=True OR dead=True")
     for row in c.fetchall():
         wongames.append({'id':row[0],
                         'choicepath':row[1],
                         'items':row[2],
-                        'winstatus':row[3]})
+                        'winstatus':row[3],
+                        'dead':row[4]})
     c.close()
     conn.close()
     
@@ -86,10 +88,10 @@ Player Name<input type="text" name="playerName">
 """, end="")
 
     
-def write_table(name, games, new_game=None, finished=False):
+def write_table(tablename, games, new_game=None, finished=False):
     #TODO: implement HTML generating code for tables here
     if finished:
-        finishedStr = "<th>Won/Died</th>"
+        finishedStr = "<th>Won</th><th>Died</th>"
     else:
         finishedStr = "<th>Continue?</th>"
 
@@ -98,28 +100,31 @@ def write_table(name, games, new_game=None, finished=False):
 <table>
 <tbody>
 <tr>
-<th>gameID</th>
-<th>playerName</th>
-<th>items</th>
+<th>GameID</th>
+<th>Player Name</th>
+<th>Items</th>
 %s
 </tr>
-""" % (name,finishedStr) ,end="")
+""" % (tablename,finishedStr) ,end="")
 
     for g in games:
-        gameId = g["gameId"];
-        playerName = g["PlayerName"]
-        items = g["Items"]
+        GameID = g["id"];
+        PlayerName = g["playerName"]
+        Items = g["items"]
+        
+        winstatus = g['winstatus']
+        dead = g['dead']
         
         if not finished:
-            play = """<a href="htmlGen.py?gameId=%s">Yes</a>    """ % gameId
+            play = """<td><a href="htmlGen.py?gameId=%s">Yes</a></td>    """ % gameId
         else:
-            play = g["state"]
+            play = """ <td>%s</td><td>&s</td>""" % winstatus,dead
         print("""
 <tr>
 <td>%s</td>
 <td>%s</td>
 <td>%s</td>
-<td>%s</td>
+%s
 </tr>
 """ % (gameId,playerName,items,play),end="")
 
