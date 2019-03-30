@@ -52,7 +52,7 @@ width: “50”
     for row in c.fetchall():
         activegames.append({'id':row[0],
                             'choicepath':row[1],
-                            'items':row[2]
+                            'items':row[2],
                             'winstatus':row[3]})
     c.close();
     wongames = []
@@ -60,7 +60,7 @@ width: “50”
     for row in c.fetchall():
         wongames.append({'id':row[0],
                         'choicepath':row[1],
-                        'items':row[2]
+                        'items':row[2],
                         'winstatus':row[3]})
     c.close()
     
