@@ -45,13 +45,31 @@ width: “50”
                            user=login.mysql['user'],
                            passwd=login.mysql['passwd'],
                            db=login.mysql['db'])
+    c=conn.cursor()
+    c.execute("SELECT * FROM gamedata WHERE winstatus=False")
+
+    activegames = []
+    for row in c.fetchall():
+        activegames.append({'id':row[0],
+                            'choicepath':row[1],
+                            'items':row[2]
+                            'winstatus':row[3]})
+    c.close();
+    wongames = []
+    c.execute("SELECT * FROM gamedata WHERE winstatus=True")
+    for row in c.fetchall():
+        wongames.append({'id':row[0],
+                        'choicepath':row[1],
+                        'items':row[2]
+                        'winstatus':row[3]})
+    c.close()
     
     #hardcoded game
     g=[{"gameId":1,"PlayerName":"Thomas","Items":['bow','knife'],"state":"Died"}]
     
-    write_table("Active Games",g,new_game=new_game,finished=False)
+    write_table("Active Games",activegames,new_game=new_game,finished=False)
     write_create_game_form()
-    write_table("Completed Games",g,new_game=new_game,finished=True)
+    write_table("Completed Games",wongames,new_game=new_game,finished=True)
 
     print("""</body>
 </html>
