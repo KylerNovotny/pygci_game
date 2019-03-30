@@ -54,7 +54,7 @@ width: “50”
                             'choicepath':row[1],
                             'items':row[2],
                             'winstatus':row[3]})
-    c.close();
+    
     wongames = []
     c.execute("SELECT * FROM gamedata WHERE winstatus=True")
     for row in c.fetchall():
@@ -63,6 +63,7 @@ width: “50”
                         'items':row[2],
                         'winstatus':row[3]})
     c.close()
+    conn.close()
     
     #hardcoded game
     g=[{"gameId":1,"PlayerName":"Thomas","Items":['bow','knife'],"state":"Died"}]
