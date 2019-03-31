@@ -11,7 +11,7 @@ from common import FormError
 def check_validity():
     form = cgi.FieldStorage()
     #TODO: add check for empty form
-    if(form.size==0):
+    if(len(form)==0):
         #raise FormError("Player names can only alphanumeric characters and must be of length <100.")
         #return
         playerName = 'abc'
