@@ -47,6 +47,7 @@ try:
     
 except FormError as e:
     print("""Content-Type: text/html;charset=utf-8
+
 <html>
 <head><title>Seventh Cirle - Kyler Novotny</title></head>
 <body>
