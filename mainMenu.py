@@ -120,7 +120,7 @@ def write_table(tablename, games, new_game=None, finished=False):
         if not finished:
             play = """<td><a href="htmlGen.py?gameId=%s">Yes</a></td>    """ % gameId
         else:
-            play = """ <td>%s</td><td>&s</td>""" % (winstatus,dead)
+            play = """ <td>%s</td>""" % winstatus + """<td>%s</td>"""%dead
         print("""
 <tr>
 <td>%s</td>
