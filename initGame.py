@@ -26,14 +26,15 @@ def check_validity():
         query = """INSERT INTO gamedata (playerName,choicepath,items,winstatus,dead) VALUES (%s,%s,%s,%s,%s)"""
         c.execute(query, (pname, "", "", 0, 0))
         conn.commit()
-        
+        gameID = c.lastrowid
         c.close()
         conn.close()
-        
-        return cursor.lastrowid;
+        return gameID;
     else:
         raise FormError("Player names can only alphanumeric characters and must be of length <100.")
         return
+    c.close()
+    conn.close()
 
 try:
     print("Content-Type: text/html")
