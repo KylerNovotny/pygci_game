@@ -119,7 +119,7 @@ def write_table(tablename, games, new_game=None, finished=False):
         dead = g['dead']
         
         if not finished:
-            if(new_game is not None and int(gameId)==new_game):
+            if(new_game is not None and int(gameId)==int(new_game)):
                 play="""<td><font color=red><a href="htmlGen.py?gameId=%s">Yes</a></font></td>    """ % gameId
             else:
                 play = """<td><a href="htmlGen.py?gameId=%s">Yes</a></td>    """ % gameId
