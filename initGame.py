@@ -60,6 +60,3 @@ except FormError as e:
 </body>
 </html>
 """ % e.msg, end="")
-
-except:
-    raise    
