@@ -11,7 +11,7 @@ from common import FormError
 def check_validity():
     form = cgi.FieldStorage()
     #TODO: add check for empty form
-    if(len(form)==0):
+    if("playerName" not in form):
         raise FormError("Form contains insufficient data.")
         return
     else:
@@ -40,7 +40,6 @@ def check_validity():
 
 try:
     gameID = check_validity()
-    print("Content-Type: text/html")
     IP = login.webhost['host']
 
     # https://en.wikipedia.org/wiki/Post/Redirect/Get
@@ -60,3 +59,6 @@ except FormError as e:
 </body>
 </html>
 """ % e.msg, end="")
+
+except:
+    raise
