@@ -12,12 +12,20 @@ def check_validity():
     form = cgi.FieldStorage()
     #TODO: add check for empty form
     playerName = form["playerName"].value
-    if playerName.isalpha():
-        #here should add game ID using database here
-        return 1
+    if playerName.isalpha() and len(playerName) < 100:
+        
     else:
-        raise FormError("Player names can only contain upper and lowercase characters.")
+        raise FormError("Player names can only alphanumeric characters and must be of length <100.")
         return
+
+    conn = MySQLdb.connect(host=login.mysql['host'],
+                           user=login.mysql['user'],
+                           passwd=login.mysql['passwd'],
+                           db=login.mysql['db'])
+    c=conn.cursor()
+    c.execute("""INSERT INTO TABLE (playerName,choicepath,items,winstatus,dead)
+              VALUES (%s,'','',0,0)"""%(playerName))
+    return cursor.lastrowid;
 
 try:
     print("Content-Type: text/html")
