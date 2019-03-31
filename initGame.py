@@ -2,7 +2,7 @@
 import cgi
 
 import cgitb
-cgitb.enable(format="text")
+cgitb.enable(display=0, logdir="/var/log/httpd/cgi_err/")
 
 import MySQLdb
 import credentials as login
@@ -13,7 +13,6 @@ def check_validity():
     #TODO: add check for empty form
     if("playerName" not in form):
         raise FormError("Form contains insufficient data.")
-        return
     else:
         pname = form["playerName"].value
         
