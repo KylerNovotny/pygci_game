@@ -30,7 +30,7 @@ def check_validity():
         return
 
 try:
-    print("Content-Type: text/html")
+    print("Content-Type: text/plain")
     gameID = check_validity()
     IP = login.webhost['host']
 
@@ -42,7 +42,7 @@ try:
     print()
     
 except FormError as e:
-    print("""Content-Type: text/html;charset=utf-8
+    print("""Content-Type: text/plain;charset=utf-8
 <html>
 <head><title>Seventh Cirle - Kyler Novotny</title></head>
 <body>
