@@ -12,17 +12,18 @@ def check_validity():
     form = cgi.FieldStorage()
     #TODO: add check for empty form
     if(len(form)==0):
-        #raise FormError("Player names can only alphanumeric characters and must be of length <100.")
-        #return
-        pname = 'abc'
+        raise FormError("Form contains insufficient data.")
+        return
     else:
         pname = form["playerName"].value
-    if pname.isalpha() and len(pname) < 100:
-        conn = MySQLdb.connect(host=login.mysql['host'],
+    conn  = MySQLdb.connect(host=login.mysql['host'],
                            user=login.mysql['user'],
                            passwd=login.mysql['passwd'],
                            db=login.mysql['db'])
-        c=conn.cursor()
+    c=conn.cursor()
+    
+    if pname.isalpha() and len(pname) < 100:
+        
         query = """INSERT INTO gamedata (playerName,choicepath,items,winstatus,dead) VALUES (%s,%s,%s,%s,%s)"""
         c.execute(query, (pname, "", "", 0, 0))
         conn.commit()
@@ -32,9 +33,9 @@ def check_validity():
         return gameID;
     else:
         raise FormError("Player names can only alphanumeric characters and must be of length <100.")
+        c.close()
+        conn.close()
         return
-    c.close()
-    conn.close()
 
 try:
     print("Content-Type: text/html")

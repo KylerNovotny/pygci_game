@@ -12,7 +12,8 @@ from common import FormError
 def write_html():
 
     form = cgi.FieldStorage()
-    
+    if len(form)==0:
+        raise FormError("ID is not in ")
     
     print("""<!DOCTYPE html>
 <html>
