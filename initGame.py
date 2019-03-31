@@ -13,17 +13,16 @@ def check_validity():
     #TODO: add check for empty form
     if("playerName" not in form):
         raise FormError("Form contains insufficient data.")
+        return
     else:
         pname = form["playerName"].value
-        
-    conn  = MySQLdb.connect(host=login.mysql['host'],
+    
+    if pname.isalpha() and len(pname) < 100:
+        conn  = MySQLdb.connect(host=login.mysql['host'],
                            user=login.mysql['user'],
                            passwd=login.mysql['passwd'],
                            db=login.mysql['db'])
-    c=conn.cursor()
-    
-    if pname.isalpha() and len(pname) < 100:
-        
+        c=conn.cursor()
         query = """INSERT INTO gamedata (playerName,choicepath,items,winstatus,dead) VALUES (%s,%s,%s,%s,%s)"""
         c.execute(query, (pname, "", "", 0, 0))
         conn.commit()
@@ -33,8 +32,6 @@ def check_validity():
         return gameID;
     else:
         raise FormError("Player names can only alphanumeric characters and must be of length <100.")
-        c.close()
-        conn.close()
         return
 
 try:
