@@ -38,8 +38,8 @@ def check_validity():
         return
 
 try:
-    print("Content-Type: text/html")
     gameID = check_validity()
+    print("Content-Type: text/html")
     IP = login.webhost['host']
 
     # https://en.wikipedia.org/wiki/Post/Redirect/Get
