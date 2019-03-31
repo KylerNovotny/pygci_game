@@ -16,6 +16,7 @@ def check_validity():
         return
     else:
         pname = form["playerName"].value
+        
     conn  = MySQLdb.connect(host=login.mysql['host'],
                            user=login.mysql['user'],
                            passwd=login.mysql['passwd'],
@@ -54,8 +55,8 @@ except FormError as e:
 <html>
 <head><title>Seventh Cirle - Kyler Novotny</title></head>
 <body>
-<p>ERROR: %s
-<p><a href="mainMenu.py">Return to main menu.</a>
+<p>ERROR: %s</p>
+<p><a href="mainMenu.py">Return to main menu.</a></p>
 </body>
 </html>
 """ % e.msg, end="")
