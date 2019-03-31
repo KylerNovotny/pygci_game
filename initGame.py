@@ -14,16 +14,16 @@ def check_validity():
     if(len(form)==0):
         #raise FormError("Player names can only alphanumeric characters and must be of length <100.")
         #return
-        playerName = 'abc'
+        pname = 'abc'
     else:
-        playerName = form["playerName"].value
-    if playerName.isalpha() and len(playerName) < 100:
+        pname = form["playerName"].value
+    if pname.isalpha() and len(pname) < 100:
         conn = MySQLdb.connect(host=login.mysql['host'],
                            user=login.mysql['user'],
                            passwd=login.mysql['passwd'],
                            db=login.mysql['db'])
         c=conn.cursor()
-        c.execute("""INSERT INTO gamedata (playerName,choicepath,items,winstatus,dead) VALUES (%s,'','',0,0)"""%(playerName))
+        c.execute("""INSERT INTO gamedata (playerName,choicepath,items,winstatus,dead) VALUES (%s,'','',0,0)"""%(pname))
         conn.commit()
         c.close()
         conn.close()
@@ -34,7 +34,7 @@ def check_validity():
         return
 
 try:
-    print("Content-Type: text/plain")
+    print("Content-Type: text/html")
     gameID = check_validity()
     IP = login.webhost['host']
 
@@ -46,7 +46,7 @@ try:
     print()
     
 except FormError as e:
-    print("""Content-Type: text/plain;charset=utf-8
+    print("""Content-Type: text/html;charset=utf-8
 <html>
 <head><title>Seventh Cirle - Kyler Novotny</title></head>
 <body>
@@ -57,5 +57,4 @@ except FormError as e:
 """ % e.msg, end="")
 
 except:
-    raise    # throw the error again, now that we've printed the lead text - and this will cause cgitb to report the error
-
+    raise    
