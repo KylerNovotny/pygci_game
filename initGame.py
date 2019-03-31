@@ -2,7 +2,7 @@
 import cgi
 
 import cgitb
-cgitb.enable(display=0, logdir="/var/log/httpd/cgi_err/")
+cgitb.enable(display=1, logdir="/var/log/httpd/cgi_err/")
 
 import MySQLdb
 import credentials as login
@@ -41,7 +41,6 @@ try:
     # https://en.wikipedia.org/wiki/Post/Redirect/Get
     # https://stackoverflow.com/questions/6122957/webpage-redirect-to-the-main-page-with-cgi-python
     print("Status: 303 See other")
-    #remember to update this to the unfinalized url
     print("""Location: http://%s/cgi-bin/mainMenu.py?new_game=%s"""%(IP,gameID))
     print()
     
