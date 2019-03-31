@@ -33,6 +33,7 @@ def check_validity():
     else:
         raise FormError("Player names can only alphanumeric characters and must be of length <100.")
         return
+    return
 
 try:
     gameID = check_validity()
