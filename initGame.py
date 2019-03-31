@@ -23,7 +23,8 @@ def check_validity():
                            passwd=login.mysql['passwd'],
                            db=login.mysql['db'])
         c=conn.cursor()
-        c.execute("""INSERT INTO gamedata (playerName,choicepath,items,winstatus,dead) VALUES (%s,'','',0,0)"""%(pname))
+        statement = """INSERT INTO gamedata (playerName,choicepath,items,winstatus,dead) VALUES (%s,'','',0,0)"""
+        c.execute(statement,pname)
         conn.commit()
         c.close()
         conn.close()
