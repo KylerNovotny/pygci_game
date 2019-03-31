@@ -11,7 +11,12 @@ from common import FormError
 def check_validity():
     form = cgi.FieldStorage()
     #TODO: add check for empty form
-    playerName = form["playerName"].value
+    if(form.size==0):
+        #raise FormError("Player names can only alphanumeric characters and must be of length <100.")
+        #return
+        playerName = 'abc'
+    else:
+        playerName = form["playerName"].value
     if playerName.isalpha() and len(playerName) < 100:
         conn = MySQLdb.connect(host=login.mysql['host'],
                            user=login.mysql['user'],
