@@ -96,7 +96,8 @@ def write_table(tablename, games, new_game=None, finished=False):
         finishedStr = "<th>Won</th><th>Died</th>"
     else:
         finishedStr = "<th>Continue?</th>"
-
+    if new_game != None:
+        color = 'red'
     print("""
 <p><b>%s</b>
 <table>
@@ -118,6 +119,8 @@ def write_table(tablename, games, new_game=None, finished=False):
         dead = g['dead']
         
         if not finished:
+            if(new_game!=None and gameId==new_game):
+                play="""<td><font color=red><a href="htmlGen.py?gameId=%s">Yes</a></font></td>    """ % gameId
             play = """<td><a href="htmlGen.py?gameId=%s">Yes</a></td>    """ % gameId
         else:
             play = """ <td>%s</td>""" % winstatus + """<td>%s</td>"""%dead
