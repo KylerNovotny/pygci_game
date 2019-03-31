@@ -2,7 +2,7 @@
 import cgi
 
 import cgitb
-cgitb.enable()
+cgitb.enable(format="text")
 
 import MySQLdb
 import credentials as login
