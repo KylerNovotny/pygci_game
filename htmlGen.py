@@ -16,7 +16,7 @@ def write_html():
     if "gameId" not in form:
         raise FormError("ID is not in form")
     else:
-        gameId = form["gameId"].value
+        gameId = int(form["gameId"].value)
 
     conn = MySQLdb.connect(host=login.mysql['host'],
                            user=login.mysql['user'],
