@@ -135,11 +135,19 @@ width: “50”
     for index in range(len(items)):
         if(index%2==0):
             itemStr += """<tr>"""
+            
         itemStr += """<td>%s</td>""" % items[index]
 
         if(index%2==1):
-            itemStr += """</tr>
-"""
+            itemStr += """</tr>"""
+    for index in range(8-len(items)):
+        if(index%2==0):
+            itemStr += """<tr>"""
+            
+        itemStr += """<td></td>"""
+
+        if(index%2==1):
+            itemStr += """</tr>"""
 
     itemStr+="""
 </table>
