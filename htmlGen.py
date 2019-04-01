@@ -132,7 +132,7 @@ width: “50”
 <table>
 <tr><th colspan=2>Inventory</th></tr>
 """
-    for index in len(items):
+    for index in range(len(items)):
         if(index%2==0):
             itemStr += """<tr>"""
         itemStr += """<td>%s</td>""" % items[index]
