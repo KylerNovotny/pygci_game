@@ -31,5 +31,3 @@ In front of you are giant stone steps leading up the mountain.""",
                       """sit022""",
                       None,
                       1,2]}
-
-itemchoices
