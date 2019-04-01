@@ -19,8 +19,8 @@ In front of you are giant stone steps leading up the mountain.""",
                      """sit02""",
                      None,
                      1,2],
-               '03':["Go up mountain"
-                     ,"""sit03"""
+               '03':["Go up mountain",
+                     """sit03""",
                      None,
                      1,2],
                '021':["stick",
