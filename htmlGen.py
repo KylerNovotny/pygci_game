@@ -78,7 +78,7 @@ width: “50”
     i = 0
     #go through all possible choices from current point
     for num in possible:
-        i++
+        i+=1
         if(i-1)%2==0):
             choiceStr+="<tr>"
         #get next choice's info
