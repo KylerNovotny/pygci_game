@@ -84,7 +84,7 @@ width: “50”
         if(i-1)%2==0:
             choiceStr+="<tr>"
         #get next choice's info
-        nextChoice = get_avail_choices(choicepath+num);
+        nextChoice = get_avail_choices(choicepath+str(num));
         desc = nextChoice[0]
         req = nextChoice[2]
         #make sure that the required items for that choice are held
