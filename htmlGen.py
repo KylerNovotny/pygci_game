@@ -161,7 +161,7 @@ try:
     print()
     write_html()
 except FormError as e:
-    print("""Content-Type: text/html;charset=utf-8
+    print("""
 
 <html>
 <head><title>Seventh Cirle - Kyler Novotny</title></head>
