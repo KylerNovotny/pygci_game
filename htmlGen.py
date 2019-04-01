@@ -80,7 +80,6 @@ width: “50”
     
     
     possible = choices[3:]
-    print("""<p>Possible: %s</p>"""% possible)
     i = 0
     #go through all possible choices from current point
     for num in possible:
@@ -91,6 +90,7 @@ width: “50”
         nextChoice = get_avail_choices(choicepath+str(num));
         desc = nextChoice[0]
         req = nextChoice[2]
+        print("""<p>: %s</p>"""% nextChoice)
         #make sure that the required items for that choice are held
         #and item is not already in inventory
         if(req in items) and (nextChoice[1] not in items):
