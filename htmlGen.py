@@ -89,7 +89,7 @@ width: “50”
         req = nextChoice[2]
         #make sure that the required items for that choice are held
         #and item is not already in inventory
-        if(req in items and nextChoice[1] not in items):
+        if(req in items) and (nextChoice[1] not in items):
             #if the next choice is an item pickup
             if len(nextChoice)==3:
                 choiceStr += """<td>%s<button type="submit" name=item value="%s"></button></td>"""% (nextChoice[0],nextChoice[1])
@@ -145,6 +145,8 @@ width: “50”
 </table>
 </body>
 </html>"""
+
+    print(itemStr)
 ##    itemStr+="""
 ##<tr><td>ITEM1</td><td>ITEM2</td></tr>
 ##<tr><td>ITEM3</td><td>ITEM4</td></tr>
