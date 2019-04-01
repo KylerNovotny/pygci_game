@@ -5,8 +5,6 @@ class FormError(BaseException):
 def get_avail_choices(choicepath):
     return choices[choicepath]
 
-if choices[choicepath]
-
 choices = {'0':[None,
                 """You are sitting at the base of a mountain with a stick by your feet.
 At the top of the mountain sits a menacing fortress guarded by undead.
