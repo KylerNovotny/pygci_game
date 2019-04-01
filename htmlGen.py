@@ -54,7 +54,7 @@ width: “50”
     choicepath = gameInfo[2]
     items = gameInfo[3].split(",")
     
-    choices = get_avail_choices(choicepath,None)
+    choices = get_avail_choices(choicepath)
                            
     currentSituation = choices[1]
 
@@ -162,7 +162,6 @@ try:
     write_html()
 except FormError as e:
     print("""
-
 <html>
 <head><title>Seventh Cirle - Kyler Novotny</title></head>
 <body>
