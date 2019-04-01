@@ -53,7 +53,7 @@ width: “50”
     pname = gameInfo[1]
     choicepath = gameInfo[2]
     items = gameInfo[3].split(",")
-    if(gameInfo[3].equals("")):
+    if(gameInfo[3] == ""):
         items = []
     
     choices = get_avail_choices(choicepath)
