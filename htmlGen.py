@@ -78,7 +78,9 @@ width: “50”
 <tbody>
 """
     
+    
     possible = choices[3:]
+    print("""<p>Possible: %s</p>"""% possible)
     i = 0
     #go through all possible choices from current point
     for num in possible:
