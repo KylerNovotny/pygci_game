@@ -67,7 +67,7 @@ width: “50”
 </p>
 <div>
 <p> Would you like to:</p>
-""",currentSituation)
+"""%currentSituation)
 
     #choice text
     choiceStr="""
