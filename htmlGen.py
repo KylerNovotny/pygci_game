@@ -13,8 +13,10 @@ def write_html():
     
 
     form = cgi.FieldStorage()
-    if gameId not in form:
+    if "gameId" not in form:
         raise FormError("ID is not in form")
+    else:
+        gameId = form["gameId"].value
 
     conn = MySQLdb.connect(host=login.mysql['host'],
                            user=login.mysql['user'],
