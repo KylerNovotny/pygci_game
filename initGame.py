@@ -24,7 +24,7 @@ def check_validity():
                            db=login.mysql['db'])
         c=conn.cursor()
         query = """INSERT INTO gamedata (playerName,choicepath,items,winstatus,dead) VALUES (%s,%s,%s,%s,%s)"""
-        c.execute(query, (pname, "", "", 0, 0))
+        c.execute(query, (pname, "", "0", 0, 0))
         conn.commit()
         gameID = c.lastrowid
         c.close()

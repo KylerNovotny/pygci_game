@@ -7,14 +7,25 @@ cgitb.enable()
 import MySQLdb
 import credentials as login
 
-from common import FormError
+from common import FormError, get_avail_choices
 
 def write_html():
+    
 
     form = cgi.FieldStorage()
-    if len(form)==0:
-        raise FormError("ID is not in ")
-    
+    if gameId not in form:
+        raise FormError("ID is not in form")
+
+    conn = MySQLdb.connect(host=login.mysql['host'],
+                           user=login.mysql['user'],
+                           passwd=login.mysql['passwd'],
+                           db=login.mysql['db'])
+    c=conn.cursor()
+    query = """SELECT * FROM gamedata WHERE id=%s"""
+    c.execute(query,gameId)
+    if(c.rowcount != 1):
+        raise FormError("Invalid game ID")
+
     print("""<!DOCTYPE html>
 <html>
 <head><title>Seventh Circle - Kyler Novotny</title>
@@ -34,42 +45,113 @@ width: “50”
 }
 </style>
 </head>
+""")
+    
+    gameInfo = c.fetchall()[0]
+    pname = gameInfo[1]
+    choicepath = gameInfo[2]
+    items = gameInfo[3].split(",")
+    
+    choices = get_avail_choices(choicepath,None)
+                           
+    currentSituation = choices[1]
+
+    #body text
+    print("""
 <body>
 <h1> Seventh Circle </h1>
-<p style=“”>
-CURRENTSITUATION
+<p>
+%s
 </p>
 <div>
 <p> Would you like to:</p>
-<form>
+""",currentSituation)
+
+    #choice text
+    choiceStr="""
+<form action="update.py" method="post">
 <table>
 <tbody>
-<tr>
-<td>CHOICE1<button type=“submit” name=choice value=“1”></button></td>
-<td>CHOICE2<button type=“submit” name=choice value=“2”></button></td>
-</tr>
-<tr>
-<td>CHOICE3<button type=“submit” name=choice value=“3”></button></td>
-<td>CHOICE4<button type=“submit” name=choice value=“4”></button></td>
-</tr>
+"""
+    
+    possible = choices[3:]
+    i = 0
+    #go through all possible choices from current point
+    for num in possible:
+        i++
+        if(i-1)%2==0):
+            choiceStr+="<tr>"
+        #get next choice's info
+        nextChoice = get_avail_choices(choicepath+num);
+        desc = nextChoice[0]
+        req = nextChoice[2]
+        #make sure that the required items for that choice are held
+        #and item is not already in inventory
+        if(req in items and nextChoice[1] not in items):
+            #if the next choice is an item pickup
+            if len(nextChoice)==3:
+                choiceStr += """<td>%s<button type="submit" name=item value="%s"></button></td>"""% (nextChoice[0],nextChoice[1])
+            #if the next choice is a choice
+            else:
+                choiceStr+="""<td>%s<button type="submit" name=choice value="%s"></button></td>"""%(nextChoice[0],i)
+
+        if(i)%2==0:
+            choiceStr+="</tr>"
+
+    choiceStr+="""
 </tbody>
 </table>
-</form>
+</form>"""
+
+    print(choiceStr)
+                    
+# HERE FOR THE FORM ACTION, NEED UPDATE PY SCRIPT
+##
+##    choiceStr="""
+##<form action="update.py" method="post">
+##<table>
+##<tbody>
+##<tr>
+##<td>CHOICE1<button type=“submit” name=choice value=“1”></button></td>
+##<td>CHOICE2<button type=“submit” name=choice value=“2”></button></td>
+##</tr>
+##<tr>
+##<td>CHOICE3<button type=“submit” name=choice value=“3”></button></td>
+##<td>CHOICE4<button type=“submit” name=choice value=“4”></button></td>
+##</tr>
+##</tbody>
+##</table>
+##</form>
+##"""
+    
+    itemStr = """
 </div>
 <br>
 <table>
 <tr><th colspan=2>Inventory</th></tr>
-<tr><td>ITEM1</td><td>ITEM2</td></tr>
-<tr><td>ITEM3</td><td>ITEM4</td></tr>
-<tr><td>ITEM5</td><td>ITEM6</td></tr>
-<tr><td>ITEM7</td><td>ITEM8</td></tr>
+"""
+    for index in len(items):
+        if(index%2==0):
+            itemStr += """<tr>"""
+        itemStr += """<td>%s</td>""" % items[index]
+
+        if(index%2==1):
+            itemStr += """</tr>
+"""
+
+    itemStr+="""
 </table>
-<br>
-<p>HTTP vars:
-</p>
-<pre>
 </body>
-</html>""")
+</html>"""
+##    itemStr+="""
+##<tr><td>ITEM1</td><td>ITEM2</td></tr>
+##<tr><td>ITEM3</td><td>ITEM4</td></tr>
+##<tr><td>ITEM5</td><td>ITEM6</td></tr>
+##<tr><td>ITEM7</td><td>ITEM8</td></tr>
+##</table>
+##</body>
+##</html>"""
+
 
 
 try:
@@ -80,11 +162,10 @@ except FormError as e:
     print("""Content-Type: text/html;charset=utf-8
 
 <html>
-
-<head><title>346 - Russ Lewis - Tic-Tac-Toe</title></head>
+<head><title>Seventh Cirle - Kyler Novotny</title></head>
 <body>
-<p>ERROR: %s
-<p><a href="mainMenu.py">Return to main menu.</a>
+<p>ERROR: %s</p>
+<p><a href="mainMenu.py">Return to main menu.</a></p>
 </body>
 </html>
 """ % e.msg, end="")
