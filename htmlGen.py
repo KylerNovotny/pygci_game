@@ -91,6 +91,8 @@ width: “50”
         desc = nextChoice[0]
         req = nextChoice[2]
         print("""<p>: %s</p>"""% nextChoice)
+        print("""<p>: %s</p>"""%(req in items))
+        print("""<p>: %s</p>"""%(nextChoice[1] not in items))
         #make sure that the required items for that choice are held
         #and item is not already in inventory
         if(req in items) and (nextChoice[1] not in items):
