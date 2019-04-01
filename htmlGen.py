@@ -79,7 +79,7 @@ width: “50”
     #go through all possible choices from current point
     for num in possible:
         i+=1
-        if(i-1)%2==0):
+        if(i-1)%2==0:
             choiceStr+="<tr>"
         #get next choice's info
         nextChoice = get_avail_choices(choicepath+num);
