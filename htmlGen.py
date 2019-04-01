@@ -23,8 +23,8 @@ def write_html():
                            passwd=login.mysql['passwd'],
                            db=login.mysql['db'])
     c=conn.cursor()
-    query = """SELECT * FROM gamedata WHERE id=%s"""
-    c.execute(query,gameId)
+    query = """SELECT * FROM gamedata WHERE id=%s""" % gameId
+    c.execute(query)
     if(c.rowcount != 1):
         raise FormError("Invalid game ID")
 
