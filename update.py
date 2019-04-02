@@ -47,8 +47,8 @@ def check_validity():
             items = ",".join(items)
         query = """UPDATE gamedata SET items=%s WHERE id=%s"""%(items,gameId)
     else:
-        choicepath = str(choicepath) + str(choice)
-        query = """UPDATE gamedata SET choicepath=%s WHERE id=%s"""%(choicepath,gameId)
+        newchoicepath = str(choicepath) + str(choice)
+        query = """UPDATE gamedata SET choicepath=%s WHERE id=%s"""%(newchoicepath,gameId)
 
     c.execute(query)
         
