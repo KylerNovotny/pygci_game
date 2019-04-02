@@ -17,8 +17,8 @@ def check_validity():
         #raise FormError("Form does not contain a decision.")
         #return
     
-    #gameId = form["gameId"].value
-    gameId=21
+    gameId = form["gameId"].value
+    
     if("item" in form):
         item = form["item"].value
     else:
