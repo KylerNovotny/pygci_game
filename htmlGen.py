@@ -143,7 +143,7 @@ width: “50”
 
         if(index%2==1):
             itemStr += """</tr>"""
-    for index in range(8-len(items)):
+    for index in range(len(items),8):
         if(index%2==0):
             itemStr += """<tr>"""
             
