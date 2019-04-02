@@ -74,9 +74,10 @@ width: “50”
     #choice text
     choiceStr="""
 <form action="update.py" method="post">
+<input type="hidden" name="gameId" value=%s>
 <table>
 <tbody>
-"""
+"""%gameId
     
     print("""<p>Items :%s</p>"""%items)
     possible = choices[3:]
