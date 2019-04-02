@@ -14,8 +14,8 @@ def check_validity():
     
     
     if("item" not in form and "choice" not in form) or ("gameId" not in form):
-        raise FormError("Form does not contain a decision.")
-        return
+        #raise FormError("Form does not contain a decision.")
+        #return
     
     gameId = form["gameId"].value
     
