@@ -98,7 +98,7 @@ width: “50”
             if len(nextChoice)==3 and (nextChoice[1] not in items):
                 choiceStr += """<td>%s<button type="submit" name=item value="%s"></button></td>"""% (nextChoice[0],nextChoice[1])
             #if the next choice is a choice
-            else:
+            else if nextChoice[1] not in items:
                 choiceStr+="""<td>%s<button type="submit" name=choice value="%s"></button></td>"""%(nextChoice[0],i)
 
         if(i)%2==0:
