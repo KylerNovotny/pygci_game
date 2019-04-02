@@ -91,7 +91,6 @@ Player Name<input type="text" name="playerName">
 
     
 def write_table(tablename, games, new_game=None, finished=False):
-    #TODO: implement HTML generating code for tables here
     if finished:
         finishedStr = "<th>Won</th><th>Died</th>"
     else:

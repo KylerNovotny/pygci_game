@@ -1,4 +1,5 @@
 #! /usr/bin/env python3
+
 import cgi
 
 import cgitb
@@ -11,7 +12,7 @@ from common import FormError
 def check_validity():
     form = cgi.FieldStorage()
     
-    #TODO: add check for empty form
+
     if("item" not in form and "choice" not in form) or ("gameId" not in form):
         raise FormError("Form does not contain a decision.")
         return
