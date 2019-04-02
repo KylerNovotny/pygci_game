@@ -12,7 +12,7 @@ from common import FormError
 def check_validity():
     form = cgi.FieldStorage()
     
-
+    print(1)
     if("item" not in form and "choice" not in form) or ("gameId" not in form):
         raise FormError("Form does not contain a decision.")
         return
