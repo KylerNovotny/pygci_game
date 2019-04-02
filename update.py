@@ -22,7 +22,7 @@ def check_validity():
     if("item" in form):
         item = form["item"].value
     else:
-        choice = form["choice"].value
+        choice = str(form["choice"].value)
         
     conn  = MySQLdb.connect(host=login.mysql['host'],
                            user=login.mysql['user'],
@@ -47,7 +47,8 @@ def check_validity():
             items = ",".join(items)
         query = """UPDATE gamedata SET items=%s WHERE id=%s"""%(items,gameId)
     else:
-        query = """UPDATE gamedata SET choicepath=%s WHERE id=%s"""%(choicepath+str(choice),gameId)
+        choicepath = str(choicepath) + str(choice)
+        query = """UPDATE gamedata SET choicepath=%s WHERE id=%s"""%(choicepath,gameId)
 
     c.execute(query)
         
