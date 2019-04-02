@@ -147,7 +147,7 @@ width: “50”
         if(index%2==0):
             itemStr += """<tr>"""
             
-        itemStr += """<td> </td>"""
+        itemStr += """<td>-</td>"""
 
         if(index%2==1):
             itemStr += """</tr>"""
