@@ -2,7 +2,7 @@
 import cgi
 
 import cgitb
-cgitb.enable(display=1, logdir="/var/log/httpd/cgi_err/")
+cgitb.enable(display=0, logdir="/var/log/httpd/cgi_err/")
 
 import MySQLdb
 import credentials as login
