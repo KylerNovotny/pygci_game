@@ -37,8 +37,6 @@ def check_validity():
     choicepath = gameInfo[2]
         
     items = gameInfo[3].split(",")
-    if(gameInfo[3]==""):
-        items = item;
     
     if("item" in form):
         if(gameInfo[3]==""):
