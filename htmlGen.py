@@ -79,7 +79,6 @@ width: “50”
 <tbody>
 """%gameId
     
-    print("""<p>Items :%s</p>"""%items)
     possible = choices[3:]
     i = 0
     #go through all possible choices from current point

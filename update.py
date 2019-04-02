@@ -12,9 +12,17 @@ def check_validity():
     form = cgi.FieldStorage()
     
     #TODO: add check for empty form
-    if("item" not in form and "choice" not in form):
+    if("item" not in form and "choice" not in form) or ("gameId" not in form):
         raise FormError("Form does not contain a decision.")
         return
+    
+    gameId = form["gameId"].value
+    
+    if("item" in form):
+        item = form["item"].value
+    else:
+        choice = form["choice"].value
+        
     conn  = MySQLdb.connect(host=login.mysql['host'],
                            user=login.mysql['user'],
                            passwd=login.mysql['passwd'],
@@ -24,12 +32,20 @@ def check_validity():
     c.execute(query)
     if(c.rowcount != 1):
         raise FormError("Invalid game ID")
+    gameInfo = c.fetchAll()[0]
+    choicepath = gameInfo[2]
+    items = gameInfo[3].split(",")
+
     
     if("item" in form):
-        query = """UPDATE gamedata SET items=%s WHERE id=%s"""%()
+        items.append(item)
+        query = """UPDATE gamedata SET items=%s WHERE id=%s"""%(items,gameId)
+    else:
+        query = """UPDATE gamedata SET choicepath=%s WHERE id=%s"""%(choicepath+choice,gameId)
+
+    c.execute(query)
         
     conn.commit()
-    gameID = c.lastrowid
     c.close()
     conn.close()
 
@@ -37,8 +53,6 @@ try:
     check_validity()
     IP = login.webhost['host']
 
-    # https://en.wikipedia.org/wiki/Post/Redirect/Get
-    # https://stackoverflow.com/questions/6122957/webpage-redirect-to-the-main-page-with-cgi-python
     print("Status: 303 See other")
     print("""Location: http://%s/cgi-bin/htmlGen.py?gameId=%s"""%(IP,gameID))
     print()
