@@ -35,14 +35,21 @@ def check_validity():
         raise FormError("Invalid game ID")
     gameInfo = c.fetchall()[0]
     choicepath = gameInfo[2]
+        
     items = gameInfo[3].split(",")
-
+    if(gameInfo[3]==""):
+        items = item;
     
     if("item" in form):
-        items.append(item)
+        if(gameInfo[3]==""):
+            items=item
+        else:
+            items = gameInfo[3].split(",")
+            items.append(item)
+            items = ",".join(items)
         query = """UPDATE gamedata SET items=%s WHERE id=%s"""%(items,gameId)
     else:
-        query = """UPDATE gamedata SET choicepath=%s WHERE id=%s"""%(choicepath+choice,gameId)
+        query = """UPDATE gamedata SET choicepath=%s WHERE id=%s"""%(choicepath+str(choice),gameId)
 
     c.execute(query)
         
@@ -52,9 +59,6 @@ def check_validity():
     return gameId
 
 try:
-    print("""Content-Type: text/html;charset=utf-8
-
-""")
     gameId = check_validity()
     IP = login.webhost['host']
     
@@ -63,7 +67,9 @@ try:
     print()
     
 except FormError as e:
-    print("""<html>
+    print("""Content-Type: text/html;charset=utf-8
+
+<html>
 <head><title>Seventh Cirle - Kyler Novotny</title></head>
 <body>
 <p>ERROR: %s</p>
