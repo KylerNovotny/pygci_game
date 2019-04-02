@@ -49,9 +49,10 @@ def check_validity():
     conn.commit()
     c.close()
     conn.close()
+    return gameId
 
 try:
-    #check_validity()
+    gameId = check_validity()
     IP = login.webhost['host']
     
     print("Status: 303 See other")
