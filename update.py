@@ -50,7 +50,7 @@ def check_validity():
     conn.close()
 
 try:
-    check_validity()
+    #check_validity()
     IP = login.webhost['host']
     
     print("Status: 303 See other")
