@@ -13,7 +13,7 @@ def check_validity():
     form = cgi.FieldStorage()
     
     
-    if("item" not in form and "choice" not in form) or ("gameId" not in form):
+    #if("item" not in form and "choice" not in form) or ("gameId" not in form):
         #raise FormError("Form does not contain a decision.")
         #return
     
