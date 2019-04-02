@@ -33,7 +33,7 @@ def check_validity():
     c.execute(query)
     if(c.rowcount != 1):
         raise FormError("Invalid game ID")
-    gameInfo = c.fetchAll()[0]
+    gameInfo = c.fetchall()[0]
     choicepath = gameInfo[2]
     items = gameInfo[3].split(",")
 
