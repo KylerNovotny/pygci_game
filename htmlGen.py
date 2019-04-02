@@ -90,16 +90,15 @@ width: “50”
         nextChoice = get_avail_choices(choicepath+str(num));
         desc = nextChoice[0]
         req = nextChoice[2]
-        print("<p>%s : %s</p>"%(nextChoice[1], nextChoice[1] not in items))
         #make sure that the required items for that choice are held
         #and item is not already in inventory
         if(req == None) or (req in items):
             #if the next choice is an item pickup
             if len(nextChoice)==3 and (nextChoice[1] not in items):
-                choiceStr += """<td>%s<button type="submit" name=item value="%s"></button></td>"""% (nextChoice[0],nextChoice[1])
+                choiceStr += """<td>%s<button type="submit" name="item" value="%s"></button></td>"""% (nextChoice[0],nextChoice[1])
             #if the next choice is a choice
             elif nextChoice[1] not in items:
-                choiceStr+="""<td>%s<button type="submit" name=choice value="%s"></button></td>"""%(nextChoice[0],i)
+                choiceStr+="""<td>%s<button type="submit" name="choice" value="%s"></button></td>"""%(nextChoice[0],i)
 
         if(i)%2==0:
             choiceStr+="</tr>"
