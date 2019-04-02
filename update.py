@@ -2,7 +2,7 @@
 import cgi
 
 import cgitb
-cgitb.enable(display=1, logdir="/var/log/httpd/cgi_err/")
+cgitb.enable()
 
 import MySQLdb
 import credentials as login
@@ -52,7 +52,7 @@ def check_validity():
 try:
     check_validity()
     IP = login.webhost['host']
-
+    
     print("Status: 303 See other")
     print("""Location: http://%s/cgi-bin/htmlGen.py?gameId=%s"""%(IP,gameID))
     print()

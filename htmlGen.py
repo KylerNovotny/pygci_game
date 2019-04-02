@@ -175,6 +175,7 @@ try:
     write_html()
 except FormError as e:
     print("""
+
 <html>
 <head><title>Seventh Cirle - Kyler Novotny</title></head>
 <body>
