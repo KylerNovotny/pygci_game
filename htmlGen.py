@@ -78,7 +78,7 @@ width: “50”
 <tbody>
 """
     
-    
+    print("""<p>Items :%s</p>"""%items)
     possible = choices[3:]
     i = 0
     #go through all possible choices from current point
@@ -90,6 +90,7 @@ width: “50”
         nextChoice = get_avail_choices(choicepath+str(num));
         desc = nextChoice[0]
         req = nextChoice[2]
+        print("<p>%s : %s</p>"%(nextChoice[1], nextChoice[1] not in items)
         #make sure that the required items for that choice are held
         #and item is not already in inventory
         if(req == None) or (req in items):
