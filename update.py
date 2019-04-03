@@ -46,11 +46,11 @@ def check_validity():
             items.append(item)
             items = ",".join(items)
         query = """UPDATE gamedata SET items=%s WHERE id=%s"""
-        c.execute(query,items,gameId)
+        c.execute(query,(items,gameId))
     else:
         newchoicepath = str(choicepath) + str(choice)
         query = """UPDATE gamedata SET choicepath=%s WHERE id=%s"""
-        c.execute(query, newchoicepath,gameId)
+        c.execute(query,( newchoicepath,gameId))
        
     conn.commit()
     
