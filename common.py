@@ -16,21 +16,33 @@ In front of you are giant stone steps leading up the mountain.""",
                      "stick",
                      None],
                '02':["Go to house",
-                     """sit02""",
+                     """Inside of the house you find a haggard sorcerer prying
+at a door on the wall. There is a small slit between the door and the wall.
+The sorcerer notices you standing and beckons to you.""",
                      None,
                      1,2],
                '03':["Go up mountain",
                      """sit03""",
                      None,
                      1,2],
-               '021':["stick",
-                      """sit021""",
+               '021':["Talk to the sorcerer",
+                      """\'Ah yes an adventurer. Could you possibly help me
+open this door? I can promise you a reward...\' the man croaks. He looks at you
+with a glint in his eyes, only describable as manic focus.""",
                       None,
                       1,2,3],
-               '022':[None,
+               '022':["Run away",
                       """sit022""",
                       None,
-                      1,2]}
+                      1,2],
+               '0211':["Use the stick to pry open the door",
+                       """Begrudgingly you walk over to the door and shove the
+stick that you found earlier into the gap. Putting all of your weight behind
+the bar, the door gently creaks open. Inside it is completely dark. The sorcerer
+points down the dark hallway and hisses \'Let us go down to the Circles of
+Dante.""",
+                       "stick",
+                       1,2]}
 
 #'path string':[description as choice,
 #               description as current,
