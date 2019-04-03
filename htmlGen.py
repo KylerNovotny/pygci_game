@@ -51,6 +51,34 @@ def write_html():
     if(c.rowcount != 1):
         raise FormError("Invalid game ID")
 
+    gameInfo = c.fetchall()[0]
+    pname = gameInfo[1]
+    choicepath = gameInfo[2]
+    
+    items = gameInfo[3].split(",")
+    #the structure of my gameInfo table is:
+    #id (int),playerName(varchar),choicepath(varchar),items(varchar),winstatus(tinyint),dead(tinyint)
+    #if user is holding no items, make a blank list to hold them
+    if(gameInfo[3] == ""):
+        items = []
+
+    #here i reference common.py, which contains all of my choicepaths (which i plan
+    #to add much more of). The structure of my choices dictionary is located there.
+    try:
+        choices = get_avail_choices(choicepath)
+    except KeyError:
+        print("""
+
+<html>
+<head><title>Seventh Cirle - Kyler Novotny</title></head>
+<body>
+<p>ERROR: Path not added to choices yet.</p>
+<p><a href="mainMenu.py">Return to main menu.</a></p>
+</body>
+</html>
+""", end="")
+        return
+        
     #then start printing the game headings
     print("""<!DOCTYPE html>
 <html>
@@ -72,22 +100,6 @@ width: “50”
 </style>
 </head>
 """)
-    
-    gameInfo = c.fetchall()[0]
-    pname = gameInfo[1]
-    choicepath = gameInfo[2]
-    
-    items = gameInfo[3].split(",")
-    #the structure of my gameInfo table is:
-    #id (int),playerName(varchar),choicepath(varchar),items(varchar),winstatus(tinyint),dead(tinyint)
-    #if user is holding no items, make a blank list to hold them
-    if(gameInfo[3] == ""):
-        items = []
-
-    #here i reference common.py, which contains all of my choicepaths (which i plan
-    #to add much more of). The structure of my choices dictionary is located there.
-    choices = get_avail_choices(choicepath)
-
                              
     currentSituation = choices[1]
     if(gameInfo[4]==True):

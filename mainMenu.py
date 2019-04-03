@@ -9,7 +9,7 @@ from common import FormError
 import credentials as login
 
 def write_html():
-    #Welcome to the profits of my more than 24 hour stint into HTTP,
+    #Welcome to the profits of my more than 30 hour stint into HTTP,
     #SQL, CGI, and game programming. Overall I have put a ton of work
     #into this project (and even more debugging it) and I am very happy of
     #how it turned out.
