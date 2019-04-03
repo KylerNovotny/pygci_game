@@ -128,7 +128,7 @@ width: “50”
         if(len(nextChoice)==2):
             choiceStr += """<td>%s<button type="submit" name="dead" value="%s"></button></td>"""% (nextChoice[0],i)
         elif(len(nextChoice)==3 and nextChoice[1] == "YOU WON"):
-            choicestr += """<td>%s<button type="submit" name="win" value="%s"></button></td>"""% (nextChoice[0],i)
+            choiceStr += """<td>%s<button type="submit" name="win" value="%s"></button></td>"""% (nextChoice[0],i)
         #make sure that the required items for that choice are held
         #and item is not already in inventory
         elif(req == None) or (req in items):
