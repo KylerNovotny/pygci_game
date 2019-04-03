@@ -65,9 +65,9 @@ def check_validity():
 
 try:
     #uncomment this for debugging 500 internal server error
-#    print("""Content-Type: text/html;charset=utf-8
-#
-#""")
+    print("""Content-Type: text/html;charset=utf-8
+
+""")
     gameId = check_validity()
     IP = login.webhost['host']
     
