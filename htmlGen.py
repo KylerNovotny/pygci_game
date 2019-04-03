@@ -66,7 +66,7 @@ def write_html():
     #to add much more of). The structure of my choices dictionary is located there.
     try:
         choices = get_avail_choices(choicepath)
-    except KeyError e:
+    except KeyError as e:
         raise e
         
     #then start printing the game headings
@@ -128,7 +128,7 @@ width: “50”
         #get next choice's info
         try:
             nextChoice = get_avail_choices(choicepath+str(num));
-        except KeyError e:
+        except KeyError as e:
             raise e
 
         desc = nextChoice[0]
