@@ -31,3 +31,9 @@ In front of you are giant stone steps leading up the mountain.""",
                       """sit022""",
                       None,
                       1,2]}
+
+#'path string':[description as choice,
+#               description as current,
+#               req items,
+#               nextpaths (variable number of
+#]

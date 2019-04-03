@@ -1,9 +1,6 @@
 #! /usr/bin/env python3
 import cgi
 
-# enable debugging.  Note that the Python docs recommend this for testing, but
-# say that it's a very bad idea to leave enabled in production, as it can leak
-# information about your internal implementation.
 import cgitb
 cgitb.enable()
 
@@ -12,6 +9,10 @@ from common import FormError
 import credentials as login
 
 def write_html():
+    #Welcome to the profits of my more than 24 hour stint into HTTP,
+    #SQL, CGI, and game programming. Overall I have put a ton of work
+    #into this project (and even more debugging it) and I am very happy of
+    #how it turned out.
     form = cgi.FieldStorage()
 
     if"new_game" in form:
@@ -38,8 +39,6 @@ width: “50”
 </style>
 <body>
 """,end="")
-
-    #HTML GENERATION HERE
 
     conn = MySQLdb.connect(host=login.mysql['host'],
                            user=login.mysql['user'],
