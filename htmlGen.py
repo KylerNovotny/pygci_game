@@ -76,10 +76,10 @@ width: “50”
     pname = gameInfo[1]
     choicepath = gameInfo[2]
 
-    if(gameInfo[5]==True):
+    if(gameInfo[4]==True):
         write_dead_screen()
         return
-    if(gameInfo[6]==True):
+    if(gameInfo[5]==True):
         write_win_screen()
         return
     items = gameInfo[3].split(",")
