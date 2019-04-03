@@ -107,11 +107,6 @@ def write_html():
         try:
             nextChoice = get_avail_choices(choicepath+str(num));
         except KeyError as e:
-            #here i imported sys to clear stdout- this is pulled from
-            #https://stackoverflow.com/questions/2084508/clear-terminal-in-python
-            #where one of the later responses describes the ANSI escape
-            #characters needed to clear the screen and move to the top.
-            sys.stderr.write("\x1b[2J\x1b[H")
             print("""
 
 <html>
