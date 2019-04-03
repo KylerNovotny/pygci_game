@@ -10,7 +10,7 @@ from common import FormError
 
 def check_validity():
     form = cgi.FieldStorage()
-    #TODO: add check for empty form
+    #first we check for the 
     if("playerName" not in form):
         raise FormError("Form contains insufficient data.")
         return

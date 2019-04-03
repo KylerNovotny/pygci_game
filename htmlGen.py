@@ -9,6 +9,28 @@ import credentials as login
 
 from common import FormError, get_avail_choices
 
+def write_dead_screen():
+    print("""
+<body>
+<h1> Seventh Circle </h1>
+<p>
+YOU HAVE DIED
+<p><a href="mainMenu.py">Return to main menu.</a></p>
+</body>
+</p>""")
+
+def write_win_screen():
+    print("""
+<body>
+<h1> Seventh Circle </h1>
+<p>
+YOU HAVE WON
+<p><a href="mainMenu.py">Return to main menu.</a></p>
+</body>
+</p>""")
+
+    
+    print("""</html""")
 def write_html():
     
     #first check for valid gameId
@@ -53,6 +75,13 @@ width: “50”
     gameInfo = c.fetchall()[0]
     pname = gameInfo[1]
     choicepath = gameInfo[2]
+
+    if(gameInfo[5]==True):
+        write_dead_screen()
+        return
+    if(gameInfo[6]==True):
+        write_win_screen()
+        return
     items = gameInfo[3].split(",")
     #the structure of my gameInfo table is:
     #id (int),playerName(varchar),choicepath(varchar),items(varchar),winstatus(tinyint),dead(tinyint)
@@ -96,9 +125,13 @@ width: “50”
         nextChoice = get_avail_choices(choicepath+str(num));
         desc = nextChoice[0]
         req = nextChoice[2]
+        if(len(nextChoice)==2):
+            choiceStr += """<td>%s<button type="submit" name="dead" value="%s"></button></td>"""% (nextChoice[0],i)
+        elif(len(nextChoice)==3 and nextChoice[1] == "YOU WON"):
+            choicestr += """<td>%s<button type="submit" name="win" value="%s"></button></td>"""% (nextChoice[0],i)
         #make sure that the required items for that choice are held
         #and item is not already in inventory
-        if(req == None) or (req in items):
+        elif(req == None) or (req in items):
             #if the next choice is an item pickup
             if len(nextChoice)==3 and (nextChoice[1] not in items):
                 choiceStr += """<td>%s<button type="submit" name="item" value="%s"></button></td>"""% (nextChoice[0],nextChoice[1])

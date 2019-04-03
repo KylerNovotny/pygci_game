@@ -35,10 +35,15 @@ def check_validity():
         raise FormError("Invalid game ID")
     gameInfo = c.fetchall()[0]
     choicepath = gameInfo[2]
-        
     items = gameInfo[3].split(",")
     
-    if("item" in form):
+    if('dead' in form):
+        query = """UPDATE gamedata SET dead=1 WHERE id=%s"""
+        c.execute(query,(gameId))
+    elif("win" in form):
+        query = """UPDATE gamedata SET winstatus=1 WHERE id=%s"""
+        c.execute(query,(gameId))
+    elif("item" in form):
         if(gameInfo[3]==""):
             items=item
         else:
