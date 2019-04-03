@@ -38,9 +38,10 @@ def check_validity():
     items = gameInfo[3].split(",")
     
     if('dead' in form):
-        query = """UPDATE gamedata SET dead=1 WHERE id=%s"""%gameId
-        c.execute(query)
-    elif("win" in form):
+        query = """UPDATE gamedata SET dead=1,choicepath=%s WHERE id=%s"""
+        choice = str(form['dead'].value)
+        c.execute(query,(str(choicepath)+str(choice),gameId))
+    elif("win" in form):        
         query = """UPDATE gamedata SET winstatus=1 WHERE id=%s"""%gameId
         c.execute(query)
     elif("item" in form):

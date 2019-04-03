@@ -51,10 +51,10 @@ You starve.
 """]
            }
 
-#'path string':[description as choice,
+#'path string':[description as a next choice,
 #               description as current,
-#               req items or "YOU WON",
+#               req items,
 #               nextpaths (variable incrementing num of paths)
 #]
-#dead path has no req or nextpaths
-#win path has desc="YOU WON"
+#if its a death path has no req items or nextpaths
+#if its a win path it has current desc="YOU WON"
