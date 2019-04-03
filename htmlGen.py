@@ -11,7 +11,7 @@ from common import FormError, get_avail_choices
 
 def write_html():
     
-
+    #first check for valid gameId
     form = cgi.FieldStorage()
     if "gameId" not in form:
         raise FormError("ID is not in form")
@@ -28,6 +28,7 @@ def write_html():
     if(c.rowcount != 1):
         raise FormError("Invalid game ID")
 
+    #then start printing the game headings
     print("""<!DOCTYPE html>
 <html>
 <head><title>Seventh Circle - Kyler Novotny</title>
@@ -53,14 +54,19 @@ width: “50”
     pname = gameInfo[1]
     choicepath = gameInfo[2]
     items = gameInfo[3].split(",")
+    #the structure of my gameInfo table is:
+    #id (int),playerName(varchar),choicepath(varchar),items(varchar),winstatus(tinyint),dead(tinyint)
+    #if user is holding no items, make a blank list to hold them
     if(gameInfo[3] == ""):
         items = []
-    
+
+    #here i reference common.py, which contains all of my choicepaths (which i plan
+    #to add much more of). The structure of my choices dictionary is located there.
     choices = get_avail_choices(choicepath)
                            
     currentSituation = choices[1]
 
-    #body text
+    #current situation text
     print("""
 <body>
 <h1> Seventh Circle </h1>
@@ -111,14 +117,15 @@ width: “50”
     print(choiceStr)
                     
 # HERE FOR THE FORM ACTION, NEED UPDATE PY SCRIPT
+# below is the general html formatting of the printed choiceStr.
 ##
 ##    choiceStr="""
 ##<form action="update.py" method="post">
 ##<table>
 ##<tbody>
 ##<tr>
-##<td>CHOICE1<button type=“submit” name=choice value=“1”></button></td>
-##<td>CHOICE2<button type=“submit” name=choice value=“2”></button></td>
+##<td>CHOICE1<button type=“submit” name=item/choice value=“1”></button></td>
+##<td>CHOICE2<button type=“submit” name=item/choice value=“2”></button></td>
 ##</tr>
 ##<tr>
 ##<td>CHOICE3<button type=“submit” name=choice value=“3”></button></td>
@@ -128,7 +135,8 @@ width: “50”
 ##</table>
 ##</form>
 ##"""
-    
+
+    #now to generate the table of items (inventory)
     itemStr = """
 </div>
 <br>
@@ -158,6 +166,8 @@ width: “50”
 </html>"""
 
     print(itemStr)
+
+# here is the general layout of my inventory table
 ##    itemStr+="""
 ##<tr><td>ITEM1</td><td>ITEM2</td></tr>
 ##<tr><td>ITEM3</td><td>ITEM4</td></tr>

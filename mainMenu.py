@@ -14,7 +14,7 @@ def write_html():
     #into this project (and even more debugging it) and I am very happy of
     #how it turned out.
     form = cgi.FieldStorage()
-
+    #added similar checking to bold the newly created game
     if"new_game" in form:
         new_game = int(form["new_game"].value)
     else:
@@ -45,9 +45,10 @@ width: “50”
                            passwd=login.mysql['passwd'],
                            db=login.mysql['db'])
     c=conn.cursor()
-    c.execute("SELECT * FROM gamedata WHERE winstatus=False AND dead=False")
 
+    #need to create lists for data in different tables
     activegames = []
+    c.execute("SELECT * FROM gamedata WHERE winstatus=False AND dead=False")
     for row in c.fetchall():
         activegames.append({'id':row[0],
                             'playerName':row[1],
@@ -68,11 +69,11 @@ width: “50”
     c.close()
     conn.close()
     
-    #hardcoded game
+    #hardcoded game for testing
     g=[{"gameId":1,"PlayerName":"Thomas","Items":['bow','knife'],"state":"Died"}]
-    
+    print("""<h1><strong>SEVENTH CIRCLE</strong></h1>""")
+    write_initGame()
     write_table("Active Games",activegames,new_game=new_game,finished=False)
-    write_create_game_form()
     write_table("Completed Games",wongames,new_game=new_game,finished=True)
 
     print("""</body>
@@ -80,7 +81,7 @@ width: “50”
 """,end="")
 
     
-def write_create_game_form():
+def write_initGame():
     print("""
 <form action="initGame.py" method="post">
 Player Name<input type="text" name="playerName">
@@ -90,6 +91,7 @@ Player Name<input type="text" name="playerName">
 
     
 def write_table(tablename, games, new_game=None, finished=False):
+    #hardcode title and unique cols for each type of table
     if finished:
         finishedStr = "<th>Won</th><th>Died</th>"
     else:
@@ -115,7 +117,7 @@ def write_table(tablename, games, new_game=None, finished=False):
         
         winstatus = g['winstatus']
         dead = g['dead']
-        
+        #here, do the bold check for the newly created game
         if not finished:
             if(new_game is not None and int(gameId)==int(new_game)):
                 play="""<td><b><a href="htmlGen.py?gameId=%s">Yes</a></b></td>    """ % gameId
@@ -138,10 +140,8 @@ def write_table(tablename, games, new_game=None, finished=False):
 </table>
 </p>
 """,end="")
-    
 
-#This is what runs when the page is first loaded each time.
-
+#HERE IS THE START OF RUNTIME HTML GEN
 print("Content-Type: text/html;charset=utf-8")
 print()
 
