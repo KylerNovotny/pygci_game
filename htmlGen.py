@@ -9,26 +9,26 @@ import credentials as login
 
 from common import FormError, get_avail_choices
 
-def write_dead_screen():
-    print("""
-<body>
-<h1> Seventh Circle </h1>
-<p>
-YOU HAVE DIED
-<p><a href="mainMenu.py">Return to main menu.</a></p>
-</body>
-</p>""")
-
-def write_win_screen(situation):
+def write_dead_screen(situation):
     print("""
 <body>
 <h1> Seventh Circle </h1>
 <p>%s</p>
 <p>
-YOU HAVE WON
+YOU HAVE DIED
 <p><a href="mainMenu.py">Return to main menu.</a></p>
 </body>
 </p>"""%situation)
+
+def write_win_screen():
+    print("""
+<body>
+<h1> Seventh Circle </h1>
+<p>
+YOU HAVE WON
+<p><a href="mainMenu.py">Return to main menu.</a></p>
+</body>
+</p>""")
 
     
     print("""</html""")
