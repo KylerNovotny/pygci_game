@@ -66,18 +66,8 @@ def write_html():
     #to add much more of). The structure of my choices dictionary is located there.
     try:
         choices = get_avail_choices(choicepath)
-    except KeyError:
-        print("""
-
-<html>
-<head><title>Seventh Cirle - Kyler Novotny</title></head>
-<body>
-<p>ERROR: Path not added to choices yet.</p>
-<p><a href="mainMenu.py">Return to main menu.</a></p>
-</body>
-</html>
-""", end="")
-        return
+    except KeyError e:
+        raise e
         
     #then start printing the game headings
     print("""<!DOCTYPE html>
@@ -136,7 +126,11 @@ width: “50”
         if(i-1)%2==0:
             choiceStr+="<tr>"
         #get next choice's info
-        nextChoice = get_avail_choices(choicepath+str(num));
+        try:
+            nextChoice = get_avail_choices(choicepath+str(num));
+        except KeyError e:
+            raise e
+
         desc = nextChoice[0]
         if(len(nextChoice)>=3):
             req = nextChoice[2]
@@ -244,4 +238,14 @@ except FormError as e:
 """ % e.msg, end="")
 
 except:
+    print("""
+
+<html>
+<head><title>Seventh Cirle - Kyler Novotny</title></head>
+<body>
+<p>ERROR: Path not added to choices yet.</p>
+<p><a href="mainMenu.py">Return to main menu.</a></p>
+</body>
+</html>
+""", end="")
     raise
