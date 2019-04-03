@@ -59,9 +59,10 @@ def check_validity():
     return gameId
 
 try:
-    print("""Content-Type: text/html;charset=utf-8
-
-""")
+    #uncomment this for debugging 500 internal server error
+#    print("""Content-Type: text/html;charset=utf-8
+#
+#""")
     gameId = check_validity()
     IP = login.webhost['host']
     
@@ -70,7 +71,9 @@ try:
     print()
     
 except FormError as e:
-    print("""<html>
+    print("""Content-Type: text/html;charset=utf-8
+
+<html>
 <head><title>Seventh Cirle - Kyler Novotny</title></head>
 <body>
 <p>ERROR: %s</p>
