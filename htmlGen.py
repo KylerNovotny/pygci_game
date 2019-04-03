@@ -77,10 +77,10 @@ width: “50”
     choicepath = gameInfo[2]
 
     if(gameInfo[4]==True):
-        write_dead_screen()
+        write_win_screen()
         return
     if(gameInfo[5]==True):
-        write_win_screen()
+        write_dead_screen()
         return
     items = gameInfo[3].split(",")
     #the structure of my gameInfo table is:
