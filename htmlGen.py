@@ -19,15 +19,16 @@ YOU HAVE DIED
 </body>
 </p>""")
 
-def write_win_screen():
+def write_win_screen(situation):
     print("""
 <body>
 <h1> Seventh Circle </h1>
+<p>%s</p>
 <p>
 YOU HAVE WON
 <p><a href="mainMenu.py">Return to main menu.</a></p>
 </body>
-</p>""")
+</p>"""%situation)
 
     
     print("""</html""")
@@ -75,13 +76,7 @@ width: “50”
     gameInfo = c.fetchall()[0]
     pname = gameInfo[1]
     choicepath = gameInfo[2]
-
-    if(gameInfo[4]==True):
-        write_win_screen()
-        return
-    if(gameInfo[5]==True):
-        write_dead_screen()
-        return
+    
     items = gameInfo[3].split(",")
     #the structure of my gameInfo table is:
     #id (int),playerName(varchar),choicepath(varchar),items(varchar),winstatus(tinyint),dead(tinyint)
@@ -92,8 +87,15 @@ width: “50”
     #here i reference common.py, which contains all of my choicepaths (which i plan
     #to add much more of). The structure of my choices dictionary is located there.
     choices = get_avail_choices(choicepath)
-                           
+
+                             
     currentSituation = choices[1]
+    if(gameInfo[4]==True):
+        write_win_screen()
+        return
+    if(gameInfo[5]==True):
+        write_dead_screen(currentSituation)
+        return 
 
     #current situation text
     print("""
