@@ -48,8 +48,7 @@ him he vanishes into a cloud of black smoke and reappears in the opposite corner
 of the room. He starts hoarsely spouting an incantation and you see a bright light,
 then pure darkness. You hear water dripping and it seems you are in a cave.
 You starve.
-"""],
-            '
+"""]
            }
 
 #'path string':[description as choice,
