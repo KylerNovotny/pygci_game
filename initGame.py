@@ -17,7 +17,7 @@ def check_validity():
     else:
         pname = form["playerName"].value
     
-    if pname.isalpha() and len(pname) < 100:
+    if pname.isalnum() and len(pname) < 100:
         conn  = MySQLdb.connect(host=login.mysql['host'],
                            user=login.mysql['user'],
                            passwd=login.mysql['passwd'],
