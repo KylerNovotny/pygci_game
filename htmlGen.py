@@ -67,7 +67,6 @@ def write_html():
     try:
         choices = get_avail_choices(choicepath)
     except KeyError as e:
-        sys.stderr.write("\x1b[2J\x1b[H")
         print("""
 
 <html>
@@ -78,29 +77,8 @@ def write_html():
 </body>
 </html>
 """, end="")
-        raise
+        return
         
-    #then start printing the game headings
-    print("""<!DOCTYPE html>
-<html>
-<head><title>Seventh Circle - Kyler Novotny</title>
-<style>
-th, td {
-text-align: center;
-border: 1px solid black;
-}
-table{
-width: 50%;
-float: none;
-border: 1px solid black;
-}
-button{
-height: “50”
-width: “50”
-}
-</style>
-</head>
-""")
                              
     currentSituation = choices[1]
     if(gameInfo[4]==True):
@@ -109,17 +87,6 @@ width: “50”
     if(gameInfo[5]==True):
         write_dead_screen(currentSituation)
         return 
-
-    #current situation text
-    print("""
-<body>
-<h1> Seventh Circle </h1>
-<p>
-%s
-</p>
-<div>
-<p> Would you like to:</p>
-"""%currentSituation)
 
     #choice text
     choiceStr="""
@@ -155,7 +122,7 @@ width: “50”
 </body>
 </html>
 """, end="")
-            raise
+            return
 
         desc = nextChoice[0]
         if(len(nextChoice)>=3):
@@ -182,6 +149,40 @@ width: “50”
 </table>
 </form>"""
 
+#then start printing the game headings
+    print("""<!DOCTYPE html>
+<html>
+<head><title>Seventh Circle - Kyler Novotny</title>
+<style>
+th, td {
+text-align: center;
+border: 1px solid black;
+}
+table{
+width: 50%;
+float: none;
+border: 1px solid black;
+}
+button{
+height: “50”
+width: “50”
+}
+</style>
+</head>
+""")
+    
+    #current situation text
+    print("""
+<body>
+<h1> Seventh Circle </h1>
+<p>
+%s
+</p>
+<div>
+<p> Would you like to:</p>
+"""%currentSituation)
+    
+    #print choices table
     print(choiceStr)
                     
 # HERE FOR THE FORM ACTION, NEED UPDATE PY SCRIPT
