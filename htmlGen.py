@@ -67,7 +67,18 @@ def write_html():
     try:
         choices = get_avail_choices(choicepath)
     except KeyError as e:
-        raise e
+        sys.stderr.write("\x1b[2J\x1b[H")
+        print("""
+
+<html>
+<head><title>Seventh Cirle - Kyler Novotny</title></head>
+<body>
+<p>ERROR: Path not added to choices yet.</p>
+<p><a href="mainMenu.py">Return to main menu.</a></p>
+</body>
+</html>
+""", end="")
+        raise
         
     #then start printing the game headings
     print("""<!DOCTYPE html>
@@ -129,7 +140,22 @@ width: “50”
         try:
             nextChoice = get_avail_choices(choicepath+str(num));
         except KeyError as e:
-            raise e
+            #here i imported sys to clear stdout- this is pulled from
+            #https://stackoverflow.com/questions/2084508/clear-terminal-in-python
+            #where one of the later responses describes the ANSI escape
+            #characters needed to clear the screen and move to the top.
+            sys.stderr.write("\x1b[2J\x1b[H")
+            print("""
+
+<html>
+<head><title>Seventh Cirle - Kyler Novotny</title></head>
+<body>
+<p>ERROR: Path not added to choices yet.</p>
+<p><a href="mainMenu.py">Return to main menu.</a></p>
+</body>
+</html>
+""", end="")
+            raise
 
         desc = nextChoice[0]
         if(len(nextChoice)>=3):
@@ -238,14 +264,4 @@ except FormError as e:
 """ % e.msg, end="")
 
 except:
-    print("""
-
-<html>
-<head><title>Seventh Cirle - Kyler Novotny</title></head>
-<body>
-<p>ERROR: Path not added to choices yet.</p>
-<p><a href="mainMenu.py">Return to main menu.</a></p>
-</body>
-</html>
-""", end="")
     raise
