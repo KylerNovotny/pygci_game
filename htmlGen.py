@@ -124,13 +124,14 @@ width: “50”
         #get next choice's info
         nextChoice = get_avail_choices(choicepath+str(num));
         desc = nextChoice[0]
-        req = nextChoice[2]
         if(len(nextChoice)==2):
             choiceStr += """<td>%s<button type="submit" name="dead" value="%s"></button></td>"""% (nextChoice[0],i)
         elif(len(nextChoice)==3 and nextChoice[1] == "YOU WON"):
             choiceStr += """<td>%s<button type="submit" name="win" value="%s"></button></td>"""% (nextChoice[0],i)
         #make sure that the required items for that choice are held
         #and item is not already in inventory
+            
+        req = nextChoice[2]
         elif(req == None) or (req in items):
             #if the next choice is an item pickup
             if len(nextChoice)==3 and (nextChoice[1] not in items):
