@@ -21,7 +21,7 @@ def check_validity():
     
     if("item" in form):
         item = form["item"].value
-    else:
+    elif("choice" in form):
         choice = str(form["choice"].value)
         
     conn  = MySQLdb.connect(host=login.mysql['host'],
