@@ -22,9 +22,54 @@ The sorcerer notices you standing and beckons to you.""",
                      None,
                      1,2],
             '03':["Go up mountain",
-                     """sit03""",
+                     """You trudge up the mountain steps, walking until you
+reach a small clearing where there stands a single apple tree. At the base
+of the tree is a pool of water that is eerily reflective. You are very thirsty
+from the walk.""",
                      None,
                      1,2],
+           '031':["Investigate the apple tree",
+                  "apple",
+                  None],
+           '032':["Go to take a drink from the pool",
+                  """You walk over to the pool, dropping to your knees and
+bending over to drink the water. As you lower your head to drink, you see
+bones lying at the bottom of the pool and pause.""",
+                  None,
+                  1,2,3],
+           '0321':["Drink the water anyways",
+                   """You take a deep sip of the water and instantly you can
+feel your stomach start twisting and turning in agony. You died of dysentery."""],
+           '0322':["Try to grab the bones from the bottom of the pool",
+                   """You reach down and grasp for the bones. As soon as you
+touch the bones they snap into action! The undead arm flails, attempting to
+pull you down and drown you.""",
+                   None,
+                   1,2],
+           '0323':["Wait and examine the surface of the water",
+                   """As you stare at the water closer the surface starts to
+coalesce, gaining a mirror-like sheen. The surface starts to shift and you see
+fire and smoke.""",
+                   None,
+                   1,2],
+           '03231':["Enter the portal",
+                    """YOU WON""",
+                    None],
+           '03232':["Get up and continue up the mountain",
+                    """You stand and cast your gaze back up the rocky mountain
+path. Around the next rim you see what looks to be smoke rising and wooden
+spikes.""",
+                    None]
+           '03221':["Use your stick to bludgeon the arm",
+                    """You grasp the stick from the ground where you laid it,
+swinging at the skeleton. With a resounding thud, the arm falls to pieces and
+you are free.(adding more to this path)""",
+                    "stick",
+                    1,2],
+           '03222':["TODO:DESC",
+                    """TODO:SIT""",
+                    None,
+                    1,2],
             '021':["Talk to the sorcerer",
                       """\'Ah yes an adventurer. Could you possibly help me
 open this door? I can promise you a reward...\' the man croaks. He looks at you
