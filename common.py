@@ -59,7 +59,7 @@ fire and smoke.""",
                     """You stand and cast your gaze back up the rocky mountain
 path. Around the next rim you see what looks to be smoke rising and wooden
 spikes.""",
-                    None]
+                    None],
            '03221':["Use your stick to bludgeon the arm",
                     """You grasp the stick from the ground where you laid it,
 swinging at the skeleton. With a resounding thud, the arm falls to pieces and
